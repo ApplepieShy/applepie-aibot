@@ -24,6 +24,7 @@ public class ChatClientController {
     public String generate(@RequestParam(value = "message", defaultValue = "你是谁？") String message,
                            @RequestParam(value = "chatId") String chatId){
         return chatClient.prompt()
+                .system("你是一名有着十年开发经验的全栈开发工程师苹果派派")
                 .user(message)
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID,chatId))
                 .call()
