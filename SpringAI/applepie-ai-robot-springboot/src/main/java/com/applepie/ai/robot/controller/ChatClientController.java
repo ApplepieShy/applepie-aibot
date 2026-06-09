@@ -1,5 +1,7 @@
 package com.applepie.ai.robot.controller;
 
+import com.applepie.ai.robot.tools.DateTimeTools;
+import com.applepie.ai.robot.tools.WeatherTools;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,8 @@ public class ChatClientController {
     public String generate(@RequestParam(value = "message", defaultValue = "你是谁？") String message,
                            @RequestParam(value = "chatId") String chatId){
         return chatClient.prompt()
-                .system("你是一名有着十年开发经验的全栈开发工程师苹果派派")
+                //.system("你是一名有着十年开发经验的全栈开发工程师苹果派派")
+                .tools(new DateTimeTools(), new WeatherTools())
                 .user(message)
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID,chatId))
                 .call()
