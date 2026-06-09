@@ -19,7 +19,7 @@ public class ChatClientConfig {
     @Bean
     public ChatClient chatClient(DeepSeekChatModel deepSeekChatModel){
         return ChatClient.builder(deepSeekChatModel)
-                .defaultSystem("你是一位有着十年开发经验的高级开发工程师")
+                //.defaultSystem("你是一位有着十年开发经验的高级开发工程师")
                 .defaultAdvisors(new SimpleLoggerAdvisor(),
 //                                    new MyAdvisor()
                         MessageChatMemoryAdvisor.builder(chatMemory).build()
