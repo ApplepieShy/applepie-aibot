@@ -7,6 +7,7 @@ import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.deepseek.DeepSeekChatModel;
+import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,8 +18,9 @@ public class ChatClientConfig {
     private ChatMemory chatMemory;
 
     @Bean
-    public ChatClient chatClient(DeepSeekChatModel deepSeekChatModel){
+    public ChatClient chatClient(DeepSeekChatModel deepSeekChatModel, ToolCallbackProvider tools){
         return ChatClient.builder(deepSeekChatModel)
+                .defaultToolCallbacks(tools)
                 //.defaultSystem("你是一位有着十年开发经验的高级开发工程师")
                 .defaultAdvisors(new SimpleLoggerAdvisor(),
 //                                    new MyAdvisor()
