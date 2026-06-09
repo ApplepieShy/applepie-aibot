@@ -7,6 +7,7 @@ import org.springframework.ai.chat.client.advisor.api.CallAdvisor;
 import org.springframework.ai.chat.client.advisor.api.CallAdvisorChain;
 
 @Slf4j
+@SuppressWarnings("all")
 public class MyAdvisor implements CallAdvisor {
 
     @Override
